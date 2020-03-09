@@ -17,4 +17,5 @@ Thumbs.db
 
 # ignore generated files
 node_modules
+dist
 

@@ -1,25 +1,21 @@
 const express = require('express');
-const app = express();
+const path = require('path');
 const mongoose = require('mongoose');
+const app = express();
 
-const persons = [];
-app.get('/', (req,res,next) => {
-    res.send('Welcome my friends!');
-});
-app.get('/person/:id?', (req, res) => {
-    var index = req.params.id - 1;
-    res.send(persons[index]);
-});
-app.get('/create',  (req, res) => {
-     const person = {
-         id: persons.length + 1,
-         name: req.query.name,
-         age: req.query.age
-     };
-     persons.push(person);
-     res.send(person);
 
-});
+mongoose.connect('mongodb://localhost/project_management', { useNewUrlParser: true, useUnifiedTopology: true }).then(
+    () => {
+        console.log('Connection to db successfully');
+    },
+    err => {
+        console.log(err);
+    }
+);
+
+app.use(express.static('dist'));
+app.use((req, res) => res.sendFile(path.resolve(__dirname, 'index.html')));
+
 app.listen(3000, err => {
     if(err) console.log(err);
     else console.log('Running server at port 3000');
