@@ -18,6 +18,7 @@ module.exports = {
       constant: path.resolve( __dirname, 'frontend/app/constant' ),
       ui: path.resolve( __dirname, 'frontend/app/ui' ),
       module: path.resolve( __dirname, 'frontend/app/component/module' ),
+      page: path.resolve( __dirname, 'frontend/app/component/page' ),
     },
   },
 
