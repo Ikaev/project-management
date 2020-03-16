@@ -16,24 +16,24 @@ mongoose.connect('mongodb://localhost/project_management', {useNewUrlParser: tru
 
 app.use(express.static('dist'));
 app.use(bodyParser.json());
-app.route('/project')
-  .get((req,res) => {
-    Project.findById('5e6913a66f20b71a48254c98', (err, project) => {
-      res.json(project)
-    })
-})
-  .post((req, res) => {
-    res.send(JSON.stringify(req.body));
-})
-  .put((req, res) => {
 
-})
-// app.get('/project/create', (req,res) => {
-//   const projectVal = new Project({_id:new mongoose.Types.ObjectId(), name: 'Project 4', customer: 'Livingcore'});
-//   projectVal.save().then(() => {
-//     res.json(projectVal);
-//   })
-// });
+app.get('/projects', (req, res) => {
+  Project.find({}, (err, projects) => {
+    res.json(projects)
+  })
+});
+
+app.get('/projects/:id', (req, res) => {
+  Project.findById(req.params.id,(err, project) => {
+    res.json(project)
+  })
+});
+app.post('/projects/create', (req,res) => {
+  const projectVal = new Project({name: 'Project 4', customer: 'Livingcore'});
+  projectVal.save().then(() => {
+    res.json(projectVal);
+  })
+});
 
 
 

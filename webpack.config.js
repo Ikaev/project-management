@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require( 'html-webpack-plugin' );
 
 module.exports = {
   mode: 'development',
-
+  devtool: "source-map",
   entry: {
     client: './frontend/index.js',
   },
@@ -19,6 +19,8 @@ module.exports = {
       ui: path.resolve( __dirname, 'frontend/app/ui' ),
       module: path.resolve( __dirname, 'frontend/app/component/module' ),
       page: path.resolve( __dirname, 'frontend/app/component/page' ),
+      core: path.resolve(__dirname, 'frontend/app/component/core'),
+      layout: path.resolve(__dirname, 'frontend/app/component/layout')
     },
   },
 

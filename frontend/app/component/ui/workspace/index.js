@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { useHistory } from "react-router-dom";
 import FormCreateProject from 'page/project/create';
+import ProjectListPage from 'page/project/list';
 
 export default function Workspace() {
   const history = useHistory();
@@ -12,8 +13,7 @@ export default function Workspace() {
   return (
     <Switch>
       <Route exact path='/projects'>
-        <h4>Список проектов</h4>
-        <Button onClick={handleClick} variant="contained" color="primary">Добавить проект</Button>
+        <ProjectListPage/>
       </Route>
       <Route exact path='/project/create'>
         <FormCreateProject/>
