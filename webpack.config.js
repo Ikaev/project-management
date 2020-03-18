@@ -20,7 +20,8 @@ module.exports = {
       module: path.resolve( __dirname, 'frontend/app/component/module' ),
       page: path.resolve( __dirname, 'frontend/app/component/page' ),
       core: path.resolve(__dirname, 'frontend/app/component/core'),
-      layout: path.resolve(__dirname, 'frontend/app/component/layout')
+      layout: path.resolve(__dirname, 'frontend/app/component/layout'),
+      api: path.resolve(__dirname, 'frontend/app/api'),
     },
   },
 

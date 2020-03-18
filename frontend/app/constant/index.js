@@ -15,9 +15,11 @@ export const DATA = '_DATA';
 export const LIST = '_LIST';
 export const CARD = '_CARD';
 export const COUNT = '_COUNT';
+export const DESCRIPTION = '_DESCRIPTION';
 
 export const ENTITY = {
-  PROJECT: '_PROJECT'
+  PROJECT: '_PROJECT',
+  CONTRACTOR: '_CONTRACTOR',
 };
 
 

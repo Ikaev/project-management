@@ -6,6 +6,11 @@ import { MenuList, MenuItem, ListItemText } from '@material-ui/core';
 
 const items = [
   {
+    label: 'Заказчики',
+    name: 'contractors',
+    url: '/contractors'
+  },
+  {
     label: 'Проекты',
     name: 'projects',
     url: '/projects'

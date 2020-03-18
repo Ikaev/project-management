@@ -9,8 +9,12 @@ const useStyles = makeStyles(theme => ({
     marginBottom: theme.spacing(1),
 
     '&:nth-child(2n - 1)': {
-      backgroundColor: theme.palette.background.secondChild
+      backgroundColor: theme.palette.grey[100]
     },
+    '&:hover': {
+      backgroundColor: theme.palette.grey[300],
+      cursor: 'pointer',
+    }
   },
 
 }));

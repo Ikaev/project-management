@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 
 const projectSchema = mongoose.Schema({
-  _id: mongoose.Schema.Types.ObjectId,
   name: String,
+  date_start: {
+    type: Date,
+    default: Date.now
+  },
+  date_end: Date,
+  contract_amount: String,
+  contractor: String,
   created: {
     type: Date,
     default: Date.now
   },
-  customer: String
 });
 
 const Project = mongoose.model('Project', projectSchema);

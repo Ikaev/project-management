@@ -19,7 +19,7 @@ function CenterPanelLayout(props) {
   }
 
   return (
-    <Box pt={14} width={1200} m='auto'>
+    <Box pt={10} width={1200} m='auto'>
       <Title/>
       {children}
     </Box>

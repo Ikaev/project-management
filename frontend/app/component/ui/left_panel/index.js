@@ -31,7 +31,7 @@ export default function LeftPanel() {
         paper: classes.drawer,
       }}
     >
-      <Box display='flex' alignItems='center' justifyContent='space-between' p={2}>
+      <Box display='flex' alignItems='center' justifyContent='space-between' p={1}>
         <Typography variant='h5' display='inline'>Меню</Typography>
         <Box ml={1}>
           <IconButton onClick={handleCloseBtnClick}>
