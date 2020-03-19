@@ -3,7 +3,7 @@ const path = require('path');
 const mongoose = require('mongoose');
 const app = express();
 const DIST_DIR = __dirname;
-const HTML_FILE = path.join(DIST_DIR, 'dist/index.html');
+const HTML_FILE = path.join(DIST_DIR, 'frontend/index.html');
 const bodyParser = require('body-parser');
 const Project = require('./schema/project');
 const Contractor = require('./schema/contractor');
@@ -21,9 +21,7 @@ mongoose.connect('mongodb://localhost/project_management', {useNewUrlParser: tru
 app.use(express.static('dist'));
 app.use(bodyParser.json());
 // app.use((req, res) => res.sendFile(path.resolve(__dirname, 'dist/index.html')));
-app.get('*', (req, res) => {
-  res.sendFile(HTML_FILE)
-});
+
 // Projects
 app.get('/v1/projects', (req, res) => {
   Project.find({}, (err, projects) => {
@@ -48,19 +46,21 @@ app.get('/v1/contractors', (req, res) => {
     res.json(contractors)
   })
 });
-app.get('/contractors/:id/description', (req, res) => {
+app.get('/v1/contractors/:id/description', (req, res) => {
   Contractor.findById(req.params.id,(err, contractor) => {
     res.json(contractor)
   })
 });
-app.post('/contractors/create', (req,res) => {
+app.post('/v1/contractors/create', (req,res) => {
   const contractorCreated = new Contractor({name: 'GDC'});
   contractorCreated.save().then(() => {
     res.json(contractorCreated);
   })
 });
 
-
+app.get('*', (req, res) => {
+  res.sendFile(HTML_FILE)
+});
 
 app.listen(3000, err => {
   if(err) console.log(err);
