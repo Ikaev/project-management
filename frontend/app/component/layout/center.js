@@ -1,10 +1,13 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
+import { Typography, Button } from '@material-ui/core';
 
 function CenterPanelLayout(props) {
   const {
     children,
+    handleClick,
+    buttonColor,
+    buttonTitle,
     title,
   } = props;
 
@@ -20,7 +23,10 @@ function CenterPanelLayout(props) {
 
   return (
     <Box pt={10} width={1200} m='auto'>
-      <Title/>
+      <Box display='flex' justifyContent='space-between' alignItems='center'>
+        <Title/>
+        <Button variant='contained' color={buttonColor} onClick={handleClick}>{buttonTitle}</Button>
+      </Box>
       {children}
     </Box>
   );

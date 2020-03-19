@@ -19,25 +19,25 @@ app.use(express.static('dist'));
 app.use(bodyParser.json());
 
 // Projects
-app.get('/projects', (req, res) => {
+app.get('/v1/projects', (req, res) => {
   Project.find({}, (err, projects) => {
     res.json(projects)
   })
 });
-app.get('/projects/:id/description', (req, res) => {
+app.get('/v1/projects/:id/description', (req, res) => {
   Project.findById(req.params.id,(err, project) => {
     res.json(project)
   })
 });
-app.post('/projects/create', (req,res) => {
-  const projectCreated = new Project({name: 'Project 7', customer: 'Gazprom'});
+app.post('/v1/projects/create', (req,res) => {
+  const projectCreated = new Project({name: 'Project 7', customer: 'Gazprom', date_start: Date.now()});
   projectCreated.save().then(() => {
     res.json(projectCreated);
   })
 });
 
 // Contractors
-app.get('/contractors', (req, res) => {
+app.get('/v1/contractors', (req, res) => {
   Contractor.find({}, (err, contractors) => {
     res.json(contractors)
   })

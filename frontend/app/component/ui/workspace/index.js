@@ -8,22 +8,28 @@ import ContractorListPage from 'page/contractor/list';
 export default function Workspace() {
   return (
     <Switch>
-      <Route exact path='/projects'>
-        <ProjectListPage/>
-      </Route>
+      <Route
+        exact
+        path='/projects'
+        component={ProjectListPage}
+
+      />
       <Route exac
              path='/projects/:id/description'
              render={(props) => <ProjectDescriptionPage {...props}/>}
       />
-      <Route exact path='/project/create'>
-        <FormCreateProject/>
-      </Route>
+      <Route
+        exact
+        path='/projects/create'
+        component={FormCreateProject}
+      />
       <Route exact path='/employees'>
         <h4>Список сотрудников</h4>
       </Route>
-      <Route exact path='/contractors'>
-        <ContractorListPage/>
-      </Route>
+      <Route exact
+             path='/contractors'
+             component={ContractorListPage}
+      />
     </Switch>
   )
 }
