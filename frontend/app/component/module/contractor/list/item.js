@@ -4,7 +4,7 @@ import Row from 'core/list/item';
 import Cell from 'core/list/cell';
 import Typography from '@material-ui/core/Typography';
 
-export default function ContractorItemComponent(props) {
+const ContractorItemComponent = props => {
   const { item } = props;
   const history = useHistory();
 
@@ -18,4 +18,6 @@ export default function ContractorItemComponent(props) {
       </Cell>
     </Row>
   )
-}
+};
+
+export default ContractorItemComponent

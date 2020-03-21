@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function TopPanel() {
+const TopPanel = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const handleShowNavigationPanel = () => dispatch(showNavigation());
@@ -38,4 +38,6 @@ export default function TopPanel() {
       </AppBar>
     </Box>
   )
-}
+};
+
+export default TopPanel

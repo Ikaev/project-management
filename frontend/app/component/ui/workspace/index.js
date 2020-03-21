@@ -5,7 +5,7 @@ import ProjectListPage from 'page/project/list';
 import ProjectDescriptionPage from 'page/project/description';
 import ContractorListPage from 'page/contractor/list';
 
-export default function Workspace() {
+const Workspace = () => {
   return (
     <Switch>
       <Route
@@ -32,4 +32,6 @@ export default function Workspace() {
       />
     </Switch>
   )
-}
+};
+
+export default Workspace

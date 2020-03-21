@@ -3,7 +3,7 @@ import CenterPanelLayout from 'layout/center';
 import ProjectList from 'module/project/list';
 import { useHistory } from 'react-router-dom';
 
-export default function ProjectListPage() {
+const ProjectListPage = () => {
   const history = useHistory();
   const handleCreateProject = () => {
     history.push('/projects/create')
@@ -18,4 +18,6 @@ export default function ProjectListPage() {
       <ProjectList/>
     </CenterPanelLayout>
   );
-}
+};
+
+export default ProjectListPage

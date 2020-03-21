@@ -21,7 +21,7 @@ const items = [
     url: '/employees'
   },
 ];
-export default function Navigation() {
+const Navigation = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   const handleMenuItemClick = (url) => () => {
@@ -37,4 +37,6 @@ export default function Navigation() {
       ))}
     </MenuList>
   );
-}
+};
+
+export default Navigation

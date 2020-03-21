@@ -8,7 +8,7 @@ const useStyle = makeStyles(theme => ({
     paddingRight: theme.spacing(1),
   }
 }));
-export default function ListCellComponent(props) {
+const ListCellComponent = props => {
   const { children } = props;
   const classes =  useStyle();
   return (
@@ -18,5 +18,6 @@ export default function ListCellComponent(props) {
       </Box>
     </Grid>
   )
+};
 
-}
+export default ListCellComponent

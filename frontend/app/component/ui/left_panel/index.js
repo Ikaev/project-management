@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function LeftPanel() {
+const LeftPanel = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const isOpen = useSelector(getIsOpenSelector);
@@ -45,4 +45,6 @@ export default function LeftPanel() {
       </Box>
     </Drawer>
   )
-}
+};
+
+export default LeftPanel

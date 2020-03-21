@@ -9,7 +9,7 @@ const useStyle = makeStyles(theme => ({
   }
 }));
 
-export default function DescriptionHeaderComponent(props) {
+const DescriptionHeaderComponent = props => {
   const classes = useStyle();
   const {
     label
@@ -22,4 +22,6 @@ export default function DescriptionHeaderComponent(props) {
       </Box>
     </React.Fragment>
   )
-}
+};
+
+export default DescriptionHeaderComponent

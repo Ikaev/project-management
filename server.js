@@ -33,10 +33,16 @@ app.get('/v1/projects/:id/description', (req, res) => {
     res.json(project)
   })
 });
-app.post('/v1/projects/create', (req,res) => {
-  const projectCreated = new Project({name: 'Project 7', customer: 'Gazprom', date_start: Date.now()});
+app.post('/v1/projects/save', (req,res) => {
+  const projectCreated = new Project(req.body);
   projectCreated.save().then(() => {
     res.json(projectCreated);
+  })
+});
+app.delete('/v1/projects/:id/delete', (req,res) => {
+  Project.findByIdAndRemove(req.params.id, (err, project) => {
+    if (err) return console.log(err);
+    res.json('delete success');
   })
 });
 

@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-export default function ListItemComponent(props) {
+const ListItemComponent = props => {
   const { children, onClick } = props;
   const classes = useStyles();
 
@@ -30,5 +30,6 @@ export default function ListItemComponent(props) {
       </Grid>
     </Paper>
   )
+};
 
-}
+export default ListItemComponent

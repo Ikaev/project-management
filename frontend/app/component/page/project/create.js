@@ -1,8 +1,15 @@
 import React from 'react';
 import Layout from 'layout/center';
+import FormCreateProject from 'module/project/create';
 
-export default function FormCreateProject() {
+const FormCreateProjectPage = () => {
   return (
-    <Layout/>
+    <Layout
+      title='Создание проекта'
+    >
+      <FormCreateProject/>
+    </Layout>
   );
-}
+};
+
+export default FormCreateProjectPage

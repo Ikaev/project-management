@@ -6,7 +6,7 @@ import DescriptionItemComponent from 'core/description/item';
 import { getProjectData } from 'module/project/duck';
 import { getDescriptionItemSelector } from 'core/description/duck';
 
-export default function ProjectDescription(props) {
+const ProjectDescription = props => {
   const {  match: { params: { id } } } = props;
   const dispatch = useDispatch();
   const data = useSelector(getDescriptionItemSelector);
@@ -31,5 +31,6 @@ export default function ProjectDescription(props) {
 
     </Paper>
   )
+};
 
-}
+export default ProjectDescription

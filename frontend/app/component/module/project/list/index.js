@@ -3,7 +3,7 @@ import ListComponent from 'core/list';
 import { getProjectListData } from 'module/project/duck';
 import Item from './item';
 
-export default function ProjectListComponent() {
+const ProjectListComponent = () => {
   return (
     <ListComponent
       Item={Item}
@@ -16,4 +16,6 @@ export default function ProjectListComponent() {
       }
     />
   )
-}
+};
+
+export default ProjectListComponent

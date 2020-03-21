@@ -3,7 +3,7 @@ import ListComponent from 'core/list';
 import { getContractorListData } from 'module/contractor/duck';
 import Item from './item';
 
-export default function ContractorListComponent() {
+const ContractorListComponent = () => {
   return (
     <ListComponent
       Item={Item}
@@ -15,5 +15,6 @@ export default function ContractorListComponent() {
       }
     />
   )
+};
 
-}
+export default ContractorListComponent

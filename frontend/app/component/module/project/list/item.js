@@ -4,7 +4,7 @@ import Row from 'core/list/item';
 import Cell from 'core/list/cell';
 import Typography from '@material-ui/core/Typography';
 
-export default function ProjectItemComponent(props) {
+const ProjectItemComponent = props => {
   const { item } = props;
   const history = useHistory();
 
@@ -19,4 +19,6 @@ export default function ProjectItemComponent(props) {
       <Cell xs={4}>{item.customer}</Cell>
     </Row>
   )
-}
+};
+
+export default ProjectItemComponent

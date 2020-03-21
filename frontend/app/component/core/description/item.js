@@ -11,7 +11,7 @@ const useStyle = makeStyles(theme => ({
   }
 }));
 
-export default function DescriptionItemComponent(props) {
+const DescriptionItemComponent = props => {
   const { label, value } = props;
   const classes = useStyle();
   return (
@@ -24,4 +24,6 @@ export default function DescriptionItemComponent(props) {
       </Grid>
     </Grid>
   )
-}
+};
+
+export default DescriptionItemComponent

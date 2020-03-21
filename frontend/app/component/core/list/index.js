@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function ListComponent(props) {
+const ListComponent = props => {
   const { headers, getData, Item } = props;
 
   const dispatch = useDispatch();
@@ -59,4 +59,6 @@ export default function ListComponent(props) {
       {items.map(item => <Item key={item._id} item={item}/>)}
     </React.Fragment>
   )
-}
+};
+
+export default ListComponent
