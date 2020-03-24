@@ -28,7 +28,7 @@ function* createProject({ payload }) {
     const project = yield call(createProjectDataRequest, payload.data);
     const { history } = payload;
     yield put(createDataSuccess());
-    history.push(`/projects/${project._id}/description`);
+    history.push(`/projects/${project.id}/description`);
   } catch(error) {
     yield put(createDataFail())
   }
@@ -40,9 +40,8 @@ function* deleteProject({ payload }) {
     const { history } = payload;
     history.push(`/projects`);
   } catch(error) {
-
+    console.log(error)
   }
-
 }
 
 function* projectSaga() {

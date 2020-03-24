@@ -2,73 +2,65 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const app = express();
+
+const User = require('./models/user');
+
 const DIST_DIR = __dirname;
 const HTML_FILE = path.join(DIST_DIR, 'frontend/index.html');
 const bodyParser = require('body-parser');
-const Project = require('./schema/project');
-const Contractor = require('./schema/contractor');
 
-mongoose.connect('mongodb://localhost/project_management', {useNewUrlParser: true, useUnifiedTopology: true}).then(
-  () => {
-    console.log('Connection to db successfully');
-  },
-  err => {
-    console.log(err);
+// Routers
+const projectRoutes = require('./routes/projects');
+const contractorRoutes = require('./routes/contractors');
+
+app.use(async (req, res, next) => {
+  try {
+    const user = await User.findById('5e79dd784b7c9e1a27c516e7');
+    req.user = user;
+    next();
+  } catch(e) {
+    console.log(e);
   }
-);
-
+});
 
 app.use(express.static('dist'));
 app.use(bodyParser.json());
-// app.use((req, res) => res.sendFile(path.resolve(__dirname, 'dist/index.html')));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use('/v1/projects', projectRoutes);
+app.use('/v1/contractors', contractorRoutes);
 
-// Projects
-app.get('/v1/projects', (req, res) => {
-  Project.find({}, (err, projects) => {
-    res.json(projects)
-  })
-});
-app.get('/v1/projects/:id/description', (req, res) => {
-  Project.findById(req.params.id,(err, project) => {
-    res.json(project)
-  })
-});
-app.post('/v1/projects/save', (req,res) => {
-  const projectCreated = new Project(req.body);
-  projectCreated.save().then(() => {
-    res.json(projectCreated);
-  })
-});
-app.delete('/v1/projects/:id/delete', (req,res) => {
-  Project.findByIdAndRemove(req.params.id, (err, project) => {
-    if (err) return console.log(err);
-    res.json('delete success');
-  })
-});
 
-// Contractors
-app.get('/v1/contractors', (req, res) => {
-  Contractor.find({}, (err, contractors) => {
-    res.json(contractors)
-  })
-});
-app.get('/v1/contractors/:id/description', (req, res) => {
-  Contractor.findById(req.params.id,(err, contractor) => {
-    res.json(contractor)
-  })
-});
-app.post('/v1/contractors/create', (req,res) => {
-  const contractorCreated = new Contractor({name: 'GDC'});
-  contractorCreated.save().then(() => {
-    res.json(contractorCreated);
-  })
-});
+
 
 app.get('*', (req, res) => {
   res.sendFile(HTML_FILE)
 });
 
-app.listen(3000, err => {
-  if(err) console.log(err);
-  else console.log('Running server at port 3000');
-});
+const PORT = process.env.PORT || 3000;
+
+async function start() {
+  try {
+    const url = 'mongodb://localhost/project_management';
+    await mongoose.connect(url, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useFindAndModify: false
+    });
+    const candidate = await User.findOne();
+    if(!candidate) {
+      const user = new User({
+        email: 'ikaev.purgen@gmail.com',
+        name: 'Evgeniy'
+      })
+      await user.save();
+    }
+    app.listen(PORT, err => {
+      if(err) console.log(err);
+      else console.log(`Server is running on port ${PORT}`);
+    });
+  } catch(error) {
+    console.log(error)
+  }
+}
+start();
+

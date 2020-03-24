@@ -9,7 +9,7 @@ const ContractorItemComponent = props => {
   const history = useHistory();
 
   const handleClick = () => {
-    history.push(`/contractor/${item._id}/description`);
+    history.push(`/contractors/${item._id}/description`);
   };
   return (
     <Row onClick={handleClick}>

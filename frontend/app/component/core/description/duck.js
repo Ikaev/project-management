@@ -7,6 +7,7 @@ import {
 } from 'constant/index';
 
 import { GET_PROJECT_DESCRIPTION_DATA_START } from 'module/project/duck';
+import { GET_CONTRACTOR_DESCRIPTION_DATA_START } from 'module/contractor/duck';
 
 
 const GET_DATA_SUCCESS = GET + DESCRIPTION + DATA + SUCCESS;
@@ -24,6 +25,7 @@ export default function descriptionCoreReducer(state= generateState(), action={}
   const { type, payload } = action;
 
   switch(type) {
+    case GET_CONTRACTOR_DESCRIPTION_DATA_START:
     case GET_PROJECT_DESCRIPTION_DATA_START:
       return generateState({loaded: true});
     case GET_DATA_SUCCESS:
