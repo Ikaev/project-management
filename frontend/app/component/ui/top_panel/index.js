@@ -4,6 +4,7 @@ import { AppBar, Box, Toolbar, Button, IconButton, Typography } from '@material-
 import MenuIcon from '@material-ui/icons/Menu';
 import { useDispatch } from 'react-redux';
 import { showNavigation } from 'module/navigation/duck';
+import { useHistory } from 'react-router-dom';
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,7 +22,9 @@ const useStyles = makeStyles(theme => ({
 const TopPanel = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const handleShowNavigationPanel = () => dispatch(showNavigation());
+  const handleLoginButton = () => history.push('/auth');
 
   return(
     <Box className={classes.root}>
@@ -33,7 +36,7 @@ const TopPanel = () => {
           <Typography variant="h6" className={classes.title}>
             Project management
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button onClick={handleLoginButton} color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
     </Box>

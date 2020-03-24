@@ -6,10 +6,16 @@ import ProjectDescriptionPage from 'page/project/description';
 import ContractorListPage from 'page/contractor/list';
 import FormCreateContractorPage from 'page/contractor/create'
 import ContractorDescriptionPage from 'page/contractor/description';
+import AuthUserPage from 'page/auth';
 
 const Workspace = () => {
   return (
     <Switch>
+      <Route
+        exact
+        path='/auth'
+        component={AuthUserPage}
+      />
       <Route
         exact
         path='/projects'
