@@ -22,6 +22,7 @@ module.exports = {
       core: path.resolve(__dirname, 'frontend/app/component/core'),
       layout: path.resolve(__dirname, 'frontend/app/component/layout'),
       api: path.resolve(__dirname, 'frontend/app/api'),
+      hoc: path.resolve(__dirname, 'frontend/app/component/hoc'),
     },
   },
 

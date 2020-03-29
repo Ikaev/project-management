@@ -1,9 +1,11 @@
 const { Router } =  require('express');
 const router = Router();
 const Project = require('../models/project');
+const auth = require('../middleware/auth');
 
-router.get('/', (req, res) => {
+router.get('/', auth, (req, res) => {
   Project.find({}, (err, projects) => {
+    console.log(res.locals)
     res.json(projects)
   })
 });

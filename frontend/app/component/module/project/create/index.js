@@ -19,8 +19,8 @@ const FormCreateProject = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { register, handleSubmit, watch, errors } = useForm();
-  const onSubmit = (data, e) => {
-    e.preventDefault();
+  const onSubmit = (data, event) => {
+    event.preventDefault();
     console.log(data);
     dispatch(createProjectData(data, history))
   };

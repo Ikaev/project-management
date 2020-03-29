@@ -7,17 +7,17 @@ import { getContractListDataRequest, getContractorDescriptionDataRequest, create
 
 function* getContractors() {
   try {
-    const contractors = yield call(getContractListDataRequest);
-    yield put(getListDataSuccess(contractors))
+    const { data } = yield call(getContractListDataRequest);
+    yield put(getListDataSuccess(data))
   } catch(error) {
-    console.log(error)
+
   }
 }
 
 function* getContractor({ payload }) {
   try {
-    const contractor = yield call(getContractorDescriptionDataRequest, payload.id);
-    yield put(getDescriptionDataSuccess(contractor));
+    const { data } = yield call(getContractorDescriptionDataRequest, payload.id);
+    yield put(getDescriptionDataSuccess(data));
   } catch(e) {
     yield put(getDescriptionDataFail());
   }
@@ -25,10 +25,10 @@ function* getContractor({ payload }) {
 
 function* createContractor({payload}) {
   try {
-    const contractor = yield call(createContractorDataRequest, payload.data);
+    const { data } = yield call(createContractorDataRequest, payload.data);
     yield put(createDataSuccess());
     const { history } = payload;
-    history.push(`/contractors/${contractor.id}/description`);
+    history.push(`/contractors/${data._id}/description`);
   } catch(e) {
     yield put(createDataFail())
   }

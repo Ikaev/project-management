@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const csrf = require('csurf');
+const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session);
@@ -10,6 +12,7 @@ const store = new MongoStore({
   collection: 'sessions',
   uri: MONGODB_URI
 });
+
 const varMiddleware = require('./middleware/variables');
 
 const DIST_DIR = __dirname;
@@ -30,13 +33,16 @@ app.use(session({
   saveUninitialized: false,
   store
 }));
+app.use(csrf());
+app.use(flash());
 app.use(varMiddleware);
 
 app.use('/v1/projects', projectRoutes);
 app.use('/v1/contractors', contractorRoutes);
-app.use('/auth', authRoutes);
+app.use('/v1/auth', authRoutes);
 
-app.get('*', (req, res) => {
+app.all('*', (req, res) => {
+  res.cookie('XSRF-TOKEN', req.csrfToken());
   res.sendFile(HTML_FILE)
 });
 

@@ -12,6 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useDispatch } from 'react-redux';
+import { loginStartAction } from 'module/auth/duck';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 
 function Copyright() {
   return (
@@ -48,7 +52,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { register, handleSubmit, watch, errors } = useForm();
+  const onSubmit = (data, event) => {
+    event.preventDefault();
+    dispatch(loginStartAction(data, history))
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -59,7 +69,7 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Авторизация
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} noValidate>
           <TextField
             variant="outlined"
             margin="normal"
@@ -70,6 +80,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
+            inputRef={register({required: true})}
           />
           <TextField
             variant="outlined"
@@ -81,6 +92,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
+            inputRef={register({required: true})}
           />
           <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}

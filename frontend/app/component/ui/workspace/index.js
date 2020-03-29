@@ -4,47 +4,57 @@ import FormCreateProjectPage from 'page/project/create';
 import ProjectListPage from 'page/project/list';
 import ProjectDescriptionPage from 'page/project/description';
 import ContractorListPage from 'page/contractor/list';
-import FormCreateContractorPage from 'page/contractor/create'
+import FormCreateContractorPage from 'page/contractor/create';
 import ContractorDescriptionPage from 'page/contractor/description';
 import AuthUserPage from 'page/auth';
+import HomePage from 'page/home';
+import PrivateRoute from 'hoc/private_route';
 
 const Workspace = () => {
   return (
     <Switch>
       <Route
         exact
+        path='/'
+        component={HomePage}
+      />
+      <Route
+        exact
         path='/auth'
         component={AuthUserPage}
       />
-      <Route
+      <PrivateRoute
         exact
         path='/projects'
         component={ProjectListPage}
       />
-      <Route exac
-             path='/projects/:id/description'
-             render={(props) => <ProjectDescriptionPage {...props}/>}
+      <PrivateRoute
+        exact
+        path='/projects/:id/description'
+        component={ProjectDescriptionPage}
       />
-      <Route
+      <PrivateRoute
         exact
         path='/projects/create'
         component={FormCreateProjectPage}
       />
-      <Route exact
-             path='/contractors'
-             component={ContractorListPage}
+      <PrivateRoute
+        exact
+        path='/contractors'
+        component={ContractorListPage}
       />
-      <Route
+      <PrivateRoute
         exact
         path='/contractors/:id/description'
-        render={(props) => <ContractorDescriptionPage {...props}/>}
+        component={ContractorDescriptionPage}
       />
-      <Route exact
-             path='/contractors/create'
-             component={FormCreateContractorPage}
+      <PrivateRoute
+        exact
+        path='/contractors/create'
+        component={FormCreateContractorPage}
       />
     </Switch>
-  )
+  );
 };
 
-export default Workspace
+export default Workspace;

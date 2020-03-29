@@ -12,6 +12,10 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import { registrationUserStartAction } from 'module/auth/duck';
 
 function Copyright() {
   return (
@@ -48,7 +52,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp() {
   const classes = useStyles();
-
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { register, handleSubmit, watch, errors } = useForm();
+  const onSubmit = (data, event) => {
+    event.preventDefault();
+    dispatch(registrationUserStartAction(data, history))
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -59,11 +69,11 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Регистрация
         </Typography>
-        <form className={classes.form} noValidate>
+        <form onSubmit={handleSubmit(onSubmit)} className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
-                autoComplete="fname"
+                autoComplete="name"
                 name="firstName"
                 variant="outlined"
                 required
@@ -71,6 +81,7 @@ export default function SignUp() {
                 id="firstName"
                 label="Имя"
                 autoFocus
+                inputRef={register({required: true})}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -78,10 +89,11 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
+                id="surname"
                 label="Фамилия"
-                name="lastName"
-                autoComplete="lname"
+                name="surname"
+                autoComplete="surname"
+                inputRef={register({required: true})}
               />
             </Grid>
             <Grid item xs={12}>
@@ -93,6 +105,7 @@ export default function SignUp() {
                 label="Электронная почта"
                 name="email"
                 autoComplete="email"
+                inputRef={register({required: true})}
               />
             </Grid>
             <Grid item xs={12}>
@@ -105,6 +118,7 @@ export default function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                inputRef={register({required: true})}
               />
             </Grid>
             <Grid item xs={12}>

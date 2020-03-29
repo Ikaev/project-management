@@ -7,17 +7,17 @@ import { getProjectListDataRequest, getProjectDescriptionDataRequest, createProj
 
 function* getProjects() {
   try {
-    const projects = yield call(getProjectListDataRequest);
-    yield put(getListDataSuccess(projects));
+    const { data } = yield call(getProjectListDataRequest);
+    yield put(getListDataSuccess(data));
   } catch(error) {
-    yield put(getListDataFail());
+    yield put(getListDataFail(error));
   }
 }
 
 function* getProject({ payload }) {
   try {
-    const project = yield call(getProjectDescriptionDataRequest, payload.id);
-    yield put(getDescriptionDataSuccess(project))
+    const { data } = yield call(getProjectDescriptionDataRequest, payload.id);
+    yield put(getDescriptionDataSuccess(data))
   } catch(error) {
     yield put(getDescriptionDataFail());
   }
@@ -25,10 +25,10 @@ function* getProject({ payload }) {
 
 function* createProject({ payload }) {
   try {
-    const project = yield call(createProjectDataRequest, payload.data);
+    const { data } = yield call(createProjectDataRequest, payload.data);
     const { history } = payload;
     yield put(createDataSuccess());
-    history.push(`/projects/${project.id}/description`);
+    history.push(`/projects/${data._id}/description`);
   } catch(error) {
     yield put(createDataFail())
   }

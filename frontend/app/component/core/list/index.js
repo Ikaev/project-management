@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Grid, Box, Typography } from '@material-ui/core';
 import { getListItemsSelector } from './duck';
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   headersCont: {
@@ -28,9 +29,10 @@ const ListComponent = props => {
   const dispatch = useDispatch();
   const items = useSelector(getListItemsSelector);
   const classes = useStyles();
+  const history = useHistory();
 
   useEffect(() => {
-    dispatch(getData());
+    dispatch(getData(history));
   }, []);
 
   function Headers() {

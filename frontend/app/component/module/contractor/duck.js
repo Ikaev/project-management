@@ -17,7 +17,7 @@ export const DELETE_CONTRACTOR_START = DELETE + ENTITY.CONTRACTOR + START;
 // Action creators
 export function getContractorListData() {
   return {
-    type: GET_CONTRACTOR_LIST_DATA_START
+    type: GET_CONTRACTOR_LIST_DATA_START,
   }
 }
 export function getContractorData(id) {
