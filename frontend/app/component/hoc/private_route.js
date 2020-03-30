@@ -1,14 +1,15 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { getAuthUserSelector } from 'module/auth/duck';
+import { getAuthUserSelector, getFetching } from 'module/auth/duck';
 
 const PrivateRoute = ({component: Component, ...rest}) => {
   const authUser = useSelector(getAuthUserSelector);
+  const fetching = useSelector(getFetching);
 
   return (
     <Route {...rest} render={(props) => (
-      authUser
+      authUser || fetching
         ? <Component {...props}/>
         : <Redirect to={{
           pathname: '/auth',

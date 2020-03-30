@@ -2,10 +2,22 @@ const { Router } = require( 'express' );
 const bcrypt = require('bcryptjs');
 const router = Router();
 const User = require('../models/user');
+const HttpError = require('./http_erors');
+const passport = require('passport');
+const LocalStrategy = require('passport-local').Strategy;
 
 router.get('/auth_user', async (req, res) => {
   res.json(req.session.user || false);
 });
+// router.post('/login', passport.use(new LocalStrategy({
+//     usernameField: 'email',
+//     passwordField: 'password',
+//   }, function(username, password, done) {
+//     User.findOne({usernameField : username}, function() {
+//
+//     })
+//   }
+// )));
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -23,13 +35,13 @@ router.post('/login', async (req, res) => {
           res.json(req.session.user)
         })
       } else {
-
+        throw new HttpError('Неверный пароль ')
       }
     } else {
-
+      throw new HttpError('Пользователь не найден')
     }
   } catch(e) {
-    console.log(e)
+    res.status(401).json(e)
   }
 });
 

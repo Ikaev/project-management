@@ -19,7 +19,7 @@ function* authLogin({payload}) {
     yield put(loginSuccessAction(data));
     history.push('/')
   } catch(e) {
-    throw new Error(e)
+
   }
 }
 
@@ -40,7 +40,7 @@ function* registrationUser({payload}) {
     yield put(registrationUserSuccessAction());
     history.push('/')
   } catch(e) {
-    throw new Error(e)
+
   }
 }
 

@@ -4,6 +4,7 @@ const csrf = require('csurf');
 const flash = require('connect-flash');
 const mongoose = require('mongoose');
 const session = require('express-session');
+const passport = require('passport');
 const MongoStore = require('connect-mongodb-session')(session);
 const app = express();
 
@@ -33,6 +34,8 @@ app.use(session({
   saveUninitialized: false,
   store
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(csrf());
 app.use(flash());
 app.use(varMiddleware);

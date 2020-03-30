@@ -18,10 +18,10 @@ const sagaMiddlewareForAuth = createSagaMiddleware();
 
 const store = createStore(
   combineReducers({
+    auth: authReducer,
     navigation: navigationReducer,
     list: listCoreReducer,
     description: descriptionCoreReducer,
-    auth: authReducer
   }),
   applyMiddleware(sagaMiddlewareForProject, sagaMiddlewareForContractor, sagaMiddlewareForAuth)
 );

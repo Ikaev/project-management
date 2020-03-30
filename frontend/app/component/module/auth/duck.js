@@ -16,7 +16,8 @@ const REGISTRATION_USER_FAIL = REGISTRATION + ENTITY.USER + FAIL;
 
 function generateState(diffState = {}) {
   const initialState = {
-    authUser: false
+    authUser: false,
+    fetching: false,
   };
   return { ...initialState, ...diffState }
 }
@@ -26,10 +27,11 @@ export default function authReducer(state = generateState(), action={}) {
   switch(type) {
     case GET_AUTH_USER_SUCCESS:
     case LOGIN_SUCCESS:
-      return generateState({authUser: payload.authUser});
+      return generateState({authUser: payload.authUser, fetching: false});
     case LOGOUT_SUCCESS:
       return generateState();
     case GET_AUTH_USER_START:
+      return generateState({fetching: true});
     case LOGIN_START:
     case LOGIN_FAIL:
     case LOGOUT_START:
@@ -96,4 +98,8 @@ export function registrationUserSuccessAction() {
 // Selectors
 export function getAuthUserSelector(store) {
   return store.auth.authUser
+}
+
+export function getFetching(store) {
+  return store.auth.fetching
 }
