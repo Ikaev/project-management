@@ -43,7 +43,7 @@ const TopPanel = () => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            Project management
+            Проектное управление
           </Typography>
           <ToggleLoginButton/>
         </Toolbar>

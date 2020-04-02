@@ -21,7 +21,12 @@ const useStyles = makeStyles(theme => ({
       textTransform: 'uppercase'
     }
   },
+  emptyList: {
+    padding: theme.spacing(1),
+    background: theme.palette.grey[200],
+  },
 }));
+
 
 const ListComponent = props => {
   const { headers, getData, Item } = props;
@@ -34,7 +39,13 @@ const ListComponent = props => {
   useEffect(() => {
     dispatch(getData(history));
   }, []);
-
+  const EmptyListComp = () => {
+    return (
+      <Paper className={classes.emptyList}>
+        <Typography>Список пуст</Typography>
+      </Paper>
+    )
+  };
   function Headers() {
     return (
       <Paper className={classes.headersCont}>
@@ -58,7 +69,11 @@ const ListComponent = props => {
   return (
     <React.Fragment>
       <Headers />
-      {items.map(item => <Item key={item._id} item={item}/>)}
+      {items.length
+        ? items.map(item => <Item key={item._id} item={item}/>)
+        : <EmptyListComp/>
+      }
+
     </React.Fragment>
   )
 };

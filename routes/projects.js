@@ -5,18 +5,15 @@ const auth = require('../middleware/auth');
 
 router.get('/', auth, (req, res) => {
   Project.find({}, (err, projects) => {
-    console.log(res.locals)
     res.json(projects)
   })
 });
-router.get('/:id/description', (req, res) => {
-  Project.findById(req.params.id,(err, project) => {
-    res.json(project)
-  })
+router.get('/:id/description', async (req, res) => {
+  const project = await Project.findById(req.params.id).populate('contractor');
+  res.json(project);
 });
 router.post('/save', (req,res) => {
   const projectCreated = new Project(req.body);
-
   try {
     projectCreated.save().then(() => {
       res.json(projectCreated);

@@ -14,22 +14,30 @@ const ProjectDescription = props => {
     dispatch(getProjectData(id))
   }, []);
 
+  const DescriptionBody = () => {
+    return (
+      <Paper>
+        <DescriptionHeaderComponent label='Сведения о проекте'/>
+
+        <DescriptionItemComponent label='Наименование' value={data.name}/>
+        <Divider/>
+        <DescriptionItemComponent label='Заказчик' value={data.contractor.name}/>
+        <Divider/>
+        <DescriptionItemComponent label='Сумма' value={data.contractAmount}/>
+
+        <DescriptionHeaderComponent label='Сроки'/>
+
+        <DescriptionItemComponent label='Дата начала проекта' value={data.dateStart}/>
+        <Divider/>
+        <DescriptionItemComponent label='Дата окончания проекта' value={data.dateEnd}/>
+      </Paper>
+    )
+  };
 
   return (
-    <Paper>
-      <DescriptionHeaderComponent label='Сведения о проекте'/>
-
-      <DescriptionItemComponent label='Наименование' value={data.name}/>
-      <Divider/>
-      <DescriptionItemComponent label='Сумма' value={data.contract_amount}/>
-
-      <DescriptionHeaderComponent label='Сроки'/>
-
-      <DescriptionItemComponent label='Дата начала проекта' value={data.date_start}/>
-      <Divider/>
-      <DescriptionItemComponent label='Дата окончания проекта' value={data.date_end}/>
-
-    </Paper>
+      data._id
+      ? <DescriptionBody/>
+      : null
   )
 };
 

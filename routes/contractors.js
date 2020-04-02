@@ -19,7 +19,6 @@ router.post('/save', (req,res) => {
     email: req.body.email,
     phone: req.body.phone,
     address: req.body.address,
-    userId: req.user
   });
   try {
     contractorCreated.save().then(() => {

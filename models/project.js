@@ -2,15 +2,16 @@ const { Schema, model } = require('mongoose');
 
 const projectSchema = new Schema({
   name: String,
-  date_start: {
+  dateStart: {
     type: Date,
     default: Date.now
   },
-  date_end: Date,
-  contract_amount: String,
+  dateEnd: Date,
+  contractAmount: String,
   contractor: {
     type: Schema.Types.ObjectId,
-    ref: 'Contractor'
+    ref: 'Contractor',
+    required: true
   },
   created: {
     type: Date,

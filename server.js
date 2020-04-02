@@ -7,7 +7,6 @@ const session = require('express-session');
 const passport = require('passport');
 const MongoStore = require('connect-mongodb-session')(session);
 const app = express();
-
 const MONGODB_URI = 'mongodb://localhost/project_management';
 const store = new MongoStore({
   collection: 'sessions',
